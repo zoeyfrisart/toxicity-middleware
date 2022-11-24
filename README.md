@@ -1,23 +1,37 @@
-# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
-This project was bootstrapped with Fastify-CLI.
+# Toxicity Middleware API
+Simple Fastify API that implements the Tensorflow Toxicity model, will return a string array of the violations it found in the provided string.
 
-## Available Scripts
+```http
+GET /toxicity
+```
 
-In the project directory, you can run:
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `message` | `string` | **Required**. The message to check for toxicity |
 
-### `npm run dev`
+## Response
+The API sends the following response to a succesful call.
+```javascript
+{
+  "violations": []
+}
+```
 
-To start the app in dev mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The `violations` property return an array of categories that the message violates.
+The following categories are available:
+- Identity Attack
+- Insult
+- Obscene
+- Severe Toxicity
+- Sexual Explicit
+- Threat
+- Toxicity
 
-### `npm start`
+## Status Codes
 
-For production mode
+Gophish returns the following status codes in its API:
 
-### `npm run test`
-
-Run the test cases.
-
-## Learn More
-
-To learn Fastify, check out the [Fastify documentation](https://www.fastify.io/docs/latest/).
+| Status Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+| 400 | `BAD REQUEST` |
