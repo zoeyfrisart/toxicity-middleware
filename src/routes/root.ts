@@ -7,7 +7,6 @@ interface ToxicityResult {
   identity_attack?: boolean
   insult?: boolean
   obscene?: boolean
-  obsene?: boolean
   severe_toxicity?: boolean
   sexual_explicit?: boolean
   threat?: boolean
@@ -89,10 +88,6 @@ const root: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
 
       if (result.obscene) {
         violations.push('Obscene')
-      }
-
-      if (result.obsene) {
-        violations.push('Obsene')
       }
 
       if (result.severe_toxicity) {
